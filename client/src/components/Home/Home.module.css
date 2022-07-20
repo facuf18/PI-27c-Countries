@@ -1,0 +1,19 @@
+.container {
+  margin: auto;
+  margin-top: 20px;
+  width: 80%;
+}
+
+.button {
+  background-color: #E3D5CA;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  padding: 16px 32px;
+  margin-left: 10px;
+  font-size: 1.1rem;
+}
+
+.button:hover {
+  background-color: #d5bdaf
+}

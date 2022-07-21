@@ -8,12 +8,12 @@ router.get('/', async (req, res) => {
   const { name } = req.query;
   try {
     let countries = await Country.findAll({
-      attributes: ['name', 'id', 'flag_img', 'continent']
+      attributes: ['name', 'id', 'flag_img', 'continent', 'population']
     });
     if(!countries.length) {
       await setCountriesToDb();
       countries = await Country.findAll({
-        attributes: ['name', 'id', 'flag_img', 'continent']
+        attributes: ['name', 'id', 'flag_img', 'continent', 'population']
       });
     }
     if(name) {

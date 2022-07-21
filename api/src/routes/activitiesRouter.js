@@ -6,9 +6,9 @@ let id = 1;
 
 router.post('/', async (req, res) => {
   const { name, difficulty, duration, season, countries } = req.body;
-
+  console.log(req.body)
   if (!name || !difficulty || !duration || !season || !countries) {
-    res.status(404).send({ error: "Can't create activity" });
+    return res.status(404).send({ error: "Can't create activity" });
   }
 
   try {
@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
       }
     });
     if(verifyActivity) {
-      res.status(404).send({ error: 'The activity already exists' });
+      return res.status(404).send({ error: 'The activity already exists' });
     } else {
       const newActivity = await Activity.create({
         id,
@@ -30,10 +30,10 @@ router.post('/', async (req, res) => {
       id++;
       const promises = countries.map(c => newActivity.addCountry(c));
       await Promise.all(promises);
-      res.json(newActivity);
+      return res.json(newActivity);
     }
   } catch(err) {
-    res.status(404).send({ error: err });
+    return res.status(404).send({ error: err });
   }
 });
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountries } from "../../redux/actions";
+import { addActivity, getCountries } from "../../redux/actions";
 
 export default function ActivityForm() {
-  const countries = useSelector(state => state.countries);
+  const allCountries = useSelector(state => state.countries);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,16 +15,16 @@ export default function ActivityForm() {
     difficulty: '',
     duration: '',
     season: '',
-    countriesId: []
+    countries: []
   });
 
   const handleChange = (event) => {
-    if(event.target.name === 'countriesId' && event.target.value !== '') {
+    if(event.target.name === 'countries' && event.target.value !== '') {
       setData({
         ...data,
-        countriesId: data.countriesId.concat(event.target.value)
+        countries: data.countries.concat(event.target.value)
       })
-    } else if (event.target.name !== 'countriesId' && event.target.value !== ''){
+    } else if (event.target.name !== 'countries' && event.target.value !== ''){
       setData({
         ...data,
         [event.target.name]: event.target.value
@@ -34,14 +34,15 @@ export default function ActivityForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(data)
+    console.log(data);
+    dispatch(addActivity(data));
     event.target.reset();
     setData({
       name: '',
       difficulty: '',
       duration: '',
       season: '',
-      countriesId: []
+      countries: []
     });
   }
 
@@ -79,16 +80,16 @@ export default function ActivityForm() {
           </select>
         </div>
         <div>
-          <label for='countriesId'>Countries:</label>
-          <select type='text' required name='countriesId' value={data.countriesId} onChange={handleChange}>
+          <label for='countries'>Countries:</label>
+          <select type='text' name='countries' value={data.countries} onChange={handleChange}>
             <option value=''>Select countries</option>
-            {countries && countries.map(country => {
+            {allCountries && allCountries.map(country => {
               return <option key={country.id} value={country.id}>{country.name}</option>
             })}
           </select>
           <div>
             <p>Added countries:</p>
-            {data.countriesId && data.countriesId.map(c => {
+            {data.countries && data.countries.map(c => {
               return <span>{c}</span>
             })}
           </div>

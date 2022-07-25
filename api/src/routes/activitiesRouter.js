@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { Activity } = require('../db.js');
+const { Country, Activity } = require('../db.js');
 
 const router = Router();
 let id = 1;
@@ -34,6 +34,19 @@ router.post('/', async (req, res) => {
     }
   } catch(err) {
     return res.status(404).send({ error: err });
+  }
+});
+
+router.get('/', async (req, res) => {
+  try {
+    let activities = await Activity.findAll({
+      include: {
+        model: Country
+      }
+    });
+    res.json(activities.length ? activities : 'No activities found');
+  } catch (err) {
+    res.status(404).send({ error: err });
   }
 });
 

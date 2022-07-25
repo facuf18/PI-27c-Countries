@@ -1,24 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { getCountries } from "../../redux/actions";
+import { getActivities, getCountries } from "../../redux/actions";
 import CountryCard from '../CountryCard/CountryCard';
 import style from './countries.module.css';
 
 
 export default function Countries() {
   let countries = useSelector(state => state.countries);
+  let activities = useSelector(state => state.activities);
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(0);
   const [search, setSearch] = useState('');
   const [order, setOrder] = useState('ascAlph');
+  const [continent, setContinent] = useState('all');
+  const [activity, setActivity] = useState('');
 
   useEffect(() => {
     dispatch(getCountries());
+    dispatch(getActivities());
   },[dispatch]);
   
 
-  //FALTA FILTRADO POR CONTINENTE Y ACTIVIDAD
+  //FILTRO ACTIVIDAD
+  const handleActivityFilter = (e) => {
+    setCurrentPage(0);
+    setActivity(e.target.value);
+  }
+  if(activity !== '') {
+    let filteredActivity = activities.filter(a => a.name === activity);
+    countries = filteredActivity[0].countries;
+  }
+
+
+  //FILTRO CONTINENTE
+  const handleContinentFilter = (e) => {
+    setCurrentPage(0);
+    setContinent(e.target.value);
+  }
+  if(continent !== 'all') {
+    countries = countries.filter(c => c.continent.toLowerCase() === continent);
+  }
 
   //ORDENAMIENTO
   if(order === 'ascAlph') {
@@ -47,16 +69,15 @@ export default function Countries() {
     setOrder(event.target.value);
   }
   
+  //PAGINACION Y BUSQUEDA
   const filteredByName = countries.filter(c => c.name.toLowerCase().includes(search.toLowerCase()));
-  //PAGINACION
   const paginatedCountries = () => {
-    if (search.length === 0) {
-      if(currentPage === 0) return countries.slice(currentPage, currentPage + 9);
-      return countries.slice(currentPage, currentPage + 10);
-    }
     if(filteredByName) {
       if(currentPage === 0) return filteredByName.slice(currentPage, currentPage + 9);
       return filteredByName.slice(currentPage, currentPage + 10);
+    } else {
+      if(currentPage === 0) return countries.slice(currentPage, currentPage + 9);
+      return countries.slice(currentPage, currentPage + 10);
     }
   }
   const nextPage = () => {
@@ -67,10 +88,12 @@ export default function Countries() {
   const prevPage = () => {
     if(currentPage > 0) setCurrentPage(currentPage - 10);
   }
-  const handleChange = (event) => {
+  const handleChange = (e) => {
     setCurrentPage(0);
-    setSearch(event.target.value);
+    setSearch(e.target.value);
   }
+  let countriesToShow = paginatedCountries();
+
 
   return (
     <div className={style.container}>
@@ -83,9 +106,25 @@ export default function Countries() {
           <option value='ascPop'>Ascending Population</option>
           <option value='desPop'>Descending Population</option>
         </select>
+        <select value={continent} onChange={handleContinentFilter}>
+          <option value='all' default>All continents</option>
+          <option value='africa'>Africa</option>
+          <option value='antarctica'>Antarctica</option>
+          <option value='asia'>Asia</option>
+          <option value='europe'>Europe</option>
+          <option value='north america'>North America</option>
+          <option value='south america'>South America</option>
+          <option value='oceania'>Oceania</option>
+        </select>
+        <select value={activity} onChange={handleActivityFilter}>
+          <option value='' default>Activities</option>
+          {activities && activities.map(a => {
+            return <option key={a.id} value={a.name}>{a.name}</option>
+          })}
+        </select>
       </div>
       <div className={style.box}>
-        {countries && paginatedCountries().map(country => {
+        {countries && countriesToShow.map(country => {
           return <CountryCard country={country}/>
         })}
       </div>

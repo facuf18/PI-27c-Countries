@@ -23,7 +23,6 @@ router.get('/', async (req, res) => {
       res.json(countries.length ? countries : 'No countries found');
     }
   } catch (err) {
-    
     res.status(404).send({ error: err });
   }
 });

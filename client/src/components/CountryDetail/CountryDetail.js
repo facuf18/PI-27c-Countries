@@ -13,6 +13,9 @@ export default function CountryDetail() {
   },[dispatch, id]);
   
   //VER ACTIVIDADES
+  console.log(country.activities)
+
+  country.activities.map(a => console.log(a.name))
 
   return (
     <div>
@@ -25,7 +28,19 @@ export default function CountryDetail() {
         <p><b>Capital:</b> {country.capital}</p>  
         <p><b>Area:</b> {country.area} km2</p>
         <p><b>Population:</b> {country.population}</p>
-        <p><b>Activities:</b> {country.activities}</p>
+        <div>
+        <b>Activities:</b>
+        {country.activities.length > 0 ? country.activities.map(a => {
+          return (
+          <div>
+            <p>Activity: {a.name}</p>
+            <p>Difficulty: {a.difficulty}/5</p>
+            <p>Duration: {a.duration} minutes</p>
+            <p>Season: {a.season}</p>
+          </div>
+          )
+        }) : ' No activities found'}
+        </div>
       </div>
     </div>
   );

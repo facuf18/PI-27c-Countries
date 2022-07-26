@@ -8,7 +8,7 @@ export default function CountryCard({ country }) {
       <img src={country.flag_img} alt={country.name}/>
       <div className={style.text}>
         <Link to={`/countries/${country.id}`}>
-          <p>{country.name}</p>
+          <h4>{country.name}</h4>
         </Link>
         <p>{country.continent}</p>
       </div>

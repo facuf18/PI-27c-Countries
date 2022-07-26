@@ -1,11 +1,66 @@
 .container {
   margin: 20px;
-  margin-top: 20px;
-
 }
 
 .box {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
+  padding: 0;
+  margin: 30px 150px 30px 150px;
+}
+
+.utilsBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 150px 30px 150px;
+}
+
+.selectors {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+}
+
+.pagButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagButtons button {
+  background-color: #E3D5CA;
+  border: 1px solid #d5bdaf;
+  border-radius: 5px;
+  margin: 0 10px 0 10px;
+  padding: 15px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.pagButtons button:hover {
+  background-color: #d5bdaf;
+}
+
+.search {
+  background-color: #E3D5CA;
+  border: 1px solid #d5bdaf;
+  border-radius: 5px;
+  margin: 0 10px 0 25px;
+  padding: 15px;
+  font-size: 0.9rem;
+}
+
+.select {
+  background-color: #E3D5CA;
+  border: 1px solid #d5bdaf;
+  border-radius: 5px;
+  margin: 0 25px 0 10px;
+  padding: 15px;
+  font-size: 0.9rem;
+  cursor: pointer;
 }

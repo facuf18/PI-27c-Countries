@@ -98,37 +98,39 @@ export default function Countries() {
   return (
     <div className={style.container}>
       <h2>Countries</h2>
-      <input type='text' placeholder='Search country' onChange={handleChange} value={search}/>
-      <div>
-        <select value={order} onChange={handleOrder}>
-          <option value='ascAlph' default>Ascending Alphabetic</option>
-          <option value='desAlph'>Descending Alphabetic</option>
-          <option value='ascPop'>Ascending Population</option>
-          <option value='desPop'>Descending Population</option>
-        </select>
-        <select value={continent} onChange={handleContinentFilter}>
-          <option value='all' default>All continents</option>
-          <option value='africa'>Africa</option>
-          <option value='antarctica'>Antarctica</option>
-          <option value='asia'>Asia</option>
-          <option value='europe'>Europe</option>
-          <option value='north america'>North America</option>
-          <option value='south america'>South America</option>
-          <option value='oceania'>Oceania</option>
-        </select>
-        <select value={activity} onChange={handleActivityFilter}>
-          <option value='' default>Activities</option>
-          {activities && activities.map(a => {
-            return <option key={a.id} value={a.name}>{a.name}</option>
-          })}
-        </select>
+      <div className={style.utilsBar}>
+        <input className={style.search} type='text' placeholder='Search country' onChange={handleChange} value={search}/>
+        <div className={style.selectors}>
+          <select className={style.select} value={order} onChange={handleOrder}>
+            <option value='ascAlph' default>Ascending Alphabetic</option>
+            <option value='desAlph'>Descending Alphabetic</option>
+            <option value='ascPop'>Ascending Population</option>
+            <option value='desPop'>Descending Population</option>
+          </select>
+          <select className={style.select} value={continent} onChange={handleContinentFilter}>
+            <option value='all' default>All continents</option>
+            <option value='africa'>Africa</option>
+            <option value='antarctica'>Antarctica</option>
+            <option value='asia'>Asia</option>
+            <option value='europe'>Europe</option>
+            <option value='north america'>North America</option>
+            <option value='south america'>South America</option>
+            <option value='oceania'>Oceania</option>
+          </select>
+          <select className={style.select} value={activity} onChange={handleActivityFilter}>
+            <option value='' default>Activities</option>
+            {activities && activities.map(a => {
+              return <option key={a.id} value={a.name}>{a.name}</option>
+            })}
+          </select>
+          </div>
       </div>
       <div className={style.box}>
         {countries && countriesToShow.map(country => {
           return <CountryCard country={country}/>
         })}
       </div>
-      <div>
+      <div className={style.pagButtons}>
         <button onClick={prevPage}>Back</button>
         <button onClick={nextPage}>Next</button>
       </div>

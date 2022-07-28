@@ -44,7 +44,8 @@ router.get('/:id', async (req, res) => {
         model: Activity
       }
     });
-    res.json(country ? country : 'No country found');
+    console.log(country)
+    res.json(country); //VER
   } catch (err) {
     res.status(404).send({ error: err });
   }

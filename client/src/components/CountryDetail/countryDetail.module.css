@@ -1,0 +1,36 @@
+.container {
+  background-color: #d5bdaf;
+  border-radius: 20px;
+  width: fit-content;
+  max-width: 800px;
+  padding: 20px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.container img {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.activityContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  margin-top: 5px;
+}
+
+.activityCard {
+  background-color: #e3d5ca;
+  border-radius: 10px;
+  width: fit-content;
+  padding: 5px;
+  margin: 5px
+}
+
+.activityTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+}

@@ -21,21 +21,13 @@ const validationsForm = (form) => {
     errors.name = 'Please, enter the activity name';
   } else if(!regexName.test(form.name.trim())) {
     errors.name = 'The field name only admits words and blank spaces'
-  }
-
-  if(!form.difficulty.trim()) {
+  } else if(!form.difficulty.trim()) {
     errors.difficulty = 'Please, select a difficulty level';
-  }
-
-  if(!form.duration.trim()) {
+  } else if(!form.duration.trim()) {
     errors.duration = 'Plase, enter the activity duration in minutes';
-  }
-
-  if(!form.season.trim()) {
+  } else if(!form.season.trim()) {
     errors.season = 'Please, select a season';
-  }
-
-  if(form.countries.length === 0) {
+  }else if(form.countries.length === 0) {
     errors.countries = 'Please, select at least one country';
   }
 
@@ -61,9 +53,9 @@ export default function ActivityForm() {
   return (
     <div className={style.container}>
       <h2>Activity</h2>
-      <form onSubmit={handleSubmit} method='POST'>
-        <div>
-          <label for='name'>Name:</label>
+      <form className={style.formContainer} onSubmit={handleSubmit} method='POST'>
+        <div className={style.inputDiv}>
+          <label for='name'>Name</label>
           <input 
             type='text'
             name='name' 
@@ -72,10 +64,10 @@ export default function ActivityForm() {
             onChange={handleChange} 
             required
           />
-          {errors.name && <p>{errors.name}</p>}
+          {errors.name && <p className={style.error}>{errors.name}</p>}
         </div>
-        <div>
-          <label for='difficulty'>Difficulty:</label>
+        <div className={style.selectDiv}>
+          <label for='difficulty'>Difficulty</label>
           <select 
             type='text' 
             name='difficulty' 
@@ -91,10 +83,10 @@ export default function ActivityForm() {
             <option value={4}>4</option>
             <option value={5}>5</option>
           </select>
-          {errors.difficulty && <p>{errors.difficulty}</p>}
+          {errors.difficulty && <p className={style.error}>{errors.difficulty}</p>}
         </div>
-        <div>
-          <label for='duration'>Duration:</label>
+        <div className={style.inputDiv}>
+          <label for='duration'>Duration (minutes)</label>
           <input 
             type='text' 
             name='duration' 
@@ -103,10 +95,10 @@ export default function ActivityForm() {
             onChange={handleChange} 
             required 
           />
-          {errors.duration && <p>{errors.duration}</p>}
+          {errors.duration && <p className={style.error}>{errors.duration}</p>}
         </div>
-        <div>
-          <label for='season'>Season:</label>
+        <div className={style.selectDiv}>
+          <label for='season'>Season</label>
           <select 
             type='text' 
             name='season' 
@@ -121,10 +113,10 @@ export default function ActivityForm() {
             <option value='Winter'>Winter</option>
             <option value='Spring'>Spring</option>
           </select>
-          {errors.season && <p>{errors.season}</p>}
+          {errors.season && <p className={style.error}>{errors.season}</p>}
         </div>
-        <div>
-          <label for='countries'>Countries:</label>
+        <div className={style.selectDiv}>
+          <label for='countries'>Countries</label>
           <select 
             type='text' 
             name='countries' 
@@ -137,15 +129,19 @@ export default function ActivityForm() {
               return <option key={country.id} value={country.id}>{country.name}</option>
             })}
           </select>
-          {errors.countries && <p>{errors.countries}</p>}
-          <div>
-            <p>Added countries:</p>
+          {errors.countries && <p className={style.error}>{errors.countries}</p>}
+        </div>
+        <div className={style.countriesDiv}>
+          <p>Added countries:</p>
+          <div className={style.countryContainer}>
             {form.countries && form.countries.map(c => {
-              return <span key={c}>{c}</span>
+              return <span className={style.countrySpan} key={c}>{c}</span>
             })}
           </div>
         </div>
-        <button type='submit'>Add</button>
+        <div className={style.addButton}>
+          <button type='submit'>Add</button>
+        </div>
       </form>
     </div>
   );

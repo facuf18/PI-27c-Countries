@@ -12,13 +12,19 @@ export default function CountryDetail() {
     dispatch(getCountryDetail(id));
   },[dispatch, id]);
   
+  const isLoading = useSelector(state => state.isLoading);
   const country = useSelector(state => state.countryDetail);
 
-  console.log(country.activities.length)
+  console.log(isLoading)
+  console.log(country)
 
   
   return (
     <div className={style.container}>
+    {isLoading ? (
+      <div>Loading...</div>
+    ) : (
+      <div>
       <h2>{country.name} - {country.id}</h2>
       <img src={country.flag_img} alt={country.name} />
       <div>
@@ -41,6 +47,8 @@ export default function CountryDetail() {
           }) : 'No activities found'}
         </div>
       </div>
+      </div>
+    )}
     </div>
   );
 }

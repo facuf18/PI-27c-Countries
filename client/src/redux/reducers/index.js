@@ -1,4 +1,5 @@
 const initialState = {
+  isLoading: true,
   countries: [],
   country: {},
   countryDetail: {},
@@ -8,6 +9,12 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
   switch(action.type) {
+    case 'COUNTRY_LOADING': {
+      return {
+        ...state,
+        isLoading: true
+      }
+    }
     case 'GET_COUNTRIES':
       return {
         ...state,
@@ -21,7 +28,8 @@ function rootReducer(state = initialState, action) {
     case 'GET_COUNTRY_DETAIL':
       return {
         ...state,
-        countryDetail: action.payload
+        countryDetail: action.payload,
+        isLoading: false
       }
     case 'ADD_ACTIVITY':
       return {

@@ -23,6 +23,7 @@ export const getCountryDetail = (id) => {
     return await fetch(`http://localhost:3001/countries/${id}`)
       .then(res => res.json())
       .then(country => {
+        dispatch({ type: 'COUNTRY_LOADING' });
         dispatch({ type: 'GET_COUNTRY_DETAIL', payload: country });
       });
   }

@@ -6,12 +6,13 @@
   width: 270px;
   height: 150px;
   margin: 20px;
-  background-color: #E3D5CA;
+
+  background-color: #2c698d;
   border-radius: 15px;
 }
 
 .card img {
-  border: 1px solid #d5bdaf;
+  border: 1px solid #272643;
   border-radius: 5px;
   margin-left: 10px;
   width: 120px;
@@ -27,7 +28,7 @@
 }
 
 .text h4 {
-  color: black;
+  color: #EDEDE9;
   font-size: 1.2rem;
   margin: 0;
   margin-bottom: 5px;

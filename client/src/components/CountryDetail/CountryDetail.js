@@ -7,12 +7,16 @@ import style from './countryDetail.module.css';
 export default function CountryDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const country = useSelector(state => state.countryDetail);
 
   useEffect(() => {
     dispatch(getCountryDetail(id));
   },[dispatch, id]);
+  
+  const country = useSelector(state => state.countryDetail);
 
+  console.log(country.activities.length)
+
+  
   return (
     <div className={style.container}>
       <h2>{country.name} - {country.id}</h2>
@@ -28,7 +32,7 @@ export default function CountryDetail() {
           {country.activities.length > 0 ? country.activities.map(a => {
             return (
             <div className={style.activityCard}>
-              <b className={style.activityTitle}>{a.name.toUpperCase()}</b>
+              <div className={style.activityTitle}><b>{a.name.toUpperCase()}</b></div>
               <p><b>Difficulty:</b> {a.difficulty}/5</p>
               <p><b>Duration:</b> {a.duration} minutes</p>
               <p><b>Season:</b> {a.season}</p>

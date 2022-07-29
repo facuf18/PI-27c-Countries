@@ -1,11 +1,11 @@
 .navbar {
-  background-color: #e3d5ca;
+  background-color: #2c698d;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 100px;
-  border: 1px solid #d5bdaf;
+  border-bottom: 1px solid #272643;
 }
 
 .logo {
@@ -27,7 +27,7 @@
 }
 
 .listItem a {
-  color: black;
+  color: #EDEDE9;
   font-size: 1.2rem;
   text-decoration: none;
   text-align: center;
@@ -38,5 +38,7 @@
 }
 
 .listItem a:hover {
-  background-color: #d5bdaf;
+  color: #272643;
+  background-color: #e3f6f5;
+  border: 1px solid #272643;
 }

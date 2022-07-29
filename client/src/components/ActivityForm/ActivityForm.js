@@ -1,8 +1,8 @@
 import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCountries } from "../../redux/actions";
-
 import { useForm } from "../../hooks/useForm";
+import style from './activityForm.module.css'
 
 const initialForm = {
   name: '',
@@ -59,8 +59,8 @@ export default function ActivityForm() {
   },[dispatch]);
 
   return (
-    <div>
-      <h2>Activity form</h2>
+    <div className={style.container}>
+      <h2>Activity</h2>
       <form onSubmit={handleSubmit} method='POST'>
         <div>
           <label for='name'>Name:</label>

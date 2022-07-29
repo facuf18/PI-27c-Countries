@@ -6,7 +6,7 @@ const initialState = {
   activity: []
 };
 
-export default function rootReducer(state = initialState, action) {
+function rootReducer(state = initialState, action) {
   switch(action.type) {
     case 'GET_COUNTRIES':
       return {
@@ -37,3 +37,5 @@ export default function rootReducer(state = initialState, action) {
       return {...state}
   }
 }
+
+export default rootReducer;

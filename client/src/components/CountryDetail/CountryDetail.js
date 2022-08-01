@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getCountryDetail } from "../../redux/actions";
+import Loader from "../Loader/Loader";
 import style from './countryDetail.module.css';
 
 export default function CountryDetail() {
@@ -12,19 +13,15 @@ export default function CountryDetail() {
     dispatch(getCountryDetail(id));
   },[dispatch, id]);
   
-  const isLoading = useSelector(state => state.isLoading);
+  const isLoading = useSelector(state => state.isLoadingCountry);
   const country = useSelector(state => state.countryDetail);
-
-  console.log(isLoading)
-  console.log(country)
-
   
   return (
-    <div className={style.container}>
+    <div>
     {isLoading ? (
-      <div>Loading...</div>
+      <Loader marginTop='20vh'/>
     ) : (
-      <div>
+      <div className={style.container}>
       <h2>{country.name} - {country.id}</h2>
       <img src={country.flag_img} alt={country.name} />
       <div>

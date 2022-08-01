@@ -3,6 +3,7 @@ export const getCountries = () => {
     return await fetch('http://localhost:3001/countries')
       .then(res => res.json())
       .then(countries => {
+        dispatch({ type: 'COUNTRIES_LOADING' });
         dispatch({ type: 'GET_COUNTRIES', payload: countries });
       });
   }

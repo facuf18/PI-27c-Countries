@@ -9,7 +9,6 @@ const country = {
   capital: 'Buenos Aires'
 };
 
-
 describe('Country model', () => {
   before(async () => await Country.sync({ force: true }));
   before(() => conn.authenticate()

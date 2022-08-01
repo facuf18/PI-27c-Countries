@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { getActivities, getCountries } from "../../redux/actions";
 import CountryCard from '../CountryCard/CountryCard';
+import Loader from "../Loader/Loader";
 import style from './countries.module.css';
 
 
 export default function Countries() {
   let countries = useSelector(state => state.countries);
+  let isLoading = useSelector(state => state.isLoadingCountries);
   let activities = useSelector(state => state.activities);
   const dispatch = useDispatch();
 
@@ -125,11 +127,14 @@ export default function Countries() {
           </select>
           </div>
       </div>
-      <div className={style.box}>
-        {countries && countriesToShow.map(country => {
-          return <CountryCard country={country}/>
-        })}
-      </div>
+        {isLoading ? (
+        <Loader marginBottom='30px'/>
+        ) : (
+        <div className={style.box}>
+          {countries && countriesToShow.map(country => {
+            return <CountryCard country={country}/>
+          })}
+        </div>)}
       <div className={style.pagButtons}>
         <button onClick={prevPage}>Back</button>
         <button onClick={nextPage}>Next</button>

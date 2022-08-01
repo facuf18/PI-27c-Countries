@@ -44,8 +44,11 @@ router.get('/:id', async (req, res) => {
         model: Activity
       }
     });
-    console.log(country)
-    res.json(country); //VER
+    if (country) {
+      res.json(country);
+    } else {
+      res.sendStatus(400);
+    }
   } catch (err) {
     res.status(404).send({ error: err });
   }

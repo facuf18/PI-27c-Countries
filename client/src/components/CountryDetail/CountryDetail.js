@@ -15,7 +15,7 @@ export default function CountryDetail() {
   
   const isLoading = useSelector(state => state.isLoadingCountry);
   const country = useSelector(state => state.countryDetail);
-  
+
   return (
     <div>
     {isLoading ? (

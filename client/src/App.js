@@ -10,12 +10,12 @@ export default function App() {
   return (
     <div className="App">
       <NavBar />
-        <Routes>
-          <Route path='/' element={<Home />}/>
-          <Route path='/countries' element={<Countries />}/>
-          <Route path='/countries/:id' element={<CountryDetail />} />
-          <Route path='/activities' element={<ActivityForm />} />
-        </Routes>
+      <Routes>
+        <Route path='/' element={<Home />}/>
+        <Route path='/countries' element={<Countries />}/>
+        <Route path='/countries/:id' element={<CountryDetail />} />
+        <Route path='/activities' element={<ActivityForm />} />
+      </Routes>
     </div>
   );
 }

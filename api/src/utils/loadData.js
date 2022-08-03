@@ -25,12 +25,9 @@ const getCountriesFromApi = async () => {
 const setCountriesToDb = async () => {
   try {
     const countries = await getCountriesFromApi();
-    await Promise.all(
-      countries.map(async country => {
-        console.log(country);
-        await Country.create(country);
-      })
-    );
+    countries.map(async country => {
+      await Country.create(country);
+    });
   } catch (err) {
     throw new Error(err);
   }

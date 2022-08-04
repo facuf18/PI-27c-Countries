@@ -16,7 +16,6 @@ const validationsForm = (form) => {
   let errors = {};
   let regexName =  /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
 
-
   if(!form.name.trim()) {
     errors.name = 'Please, enter the activity name';
   } else if(!regexName.test(form.name.trim())) {

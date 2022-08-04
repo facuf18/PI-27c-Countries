@@ -10,17 +10,15 @@ export const useForm = (initialForm, validateForm) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    
     if(name === 'countries' && value !== '') {
-      const search = form.countries.find(c => c === value)
+      const search = form.countries.find(c => c === value);
       if(!search) {
         setForm({
           ...form,
           countries: form.countries.concat(value)
         })
       }
-    } else if (name !== 'countries'){
+    } else if (name !== 'countries') {
       setForm({
         ...form,
         [name]: value

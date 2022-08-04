@@ -30,8 +30,8 @@ export default function Countries() {
     setActivity(e.target.value);
   }
   if(activity !== '') {
-    let filteredActivity = activities.filter(a => a.name === activity);
-    countries = filteredActivity[0].countries;
+    let filterByActivity = activities.filter(a => a.name === activity);
+    countries = filterByActivity[0].countries;
   }
 
 
@@ -45,6 +45,10 @@ export default function Countries() {
   }
 
   //ORDENAMIENTO
+  const handleOrder = (event) => {
+    setCurrentPage(0);
+    setOrder(event.target.value);
+  }
   if(order === 'ascAlph') {
     countries = countries.sort((a, b) => {
       return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
@@ -66,20 +70,17 @@ export default function Countries() {
       return 0;
     });
   }
-  const handleOrder = (event) => {
-    setCurrentPage(0);
-    setOrder(event.target.value);
-  }
   
   //PAGINACION Y BUSQUEDA
+  const handleChange = (e) => {
+    setCurrentPage(0);
+    setSearch(e.target.value);
+  }
   const filteredByName = countries.filter(c => c.name.toLowerCase().includes(search.toLowerCase()));
   const paginatedCountries = () => {
     if(filteredByName) {
       if(currentPage === 0) return filteredByName.slice(currentPage, currentPage + 9);
       return filteredByName.slice(currentPage, currentPage + 10);
-    } else {
-      if(currentPage === 0) return countries.slice(currentPage, currentPage + 9);
-      return countries.slice(currentPage, currentPage + 10);
     }
   }
   const nextPage = () => {
@@ -90,12 +91,8 @@ export default function Countries() {
   const prevPage = () => {
     if(currentPage > 0) setCurrentPage(currentPage - 10);
   }
-  const handleChange = (e) => {
-    setCurrentPage(0);
-    setSearch(e.target.value);
-  }
-  let countriesToShow = paginatedCountries();
 
+  let countriesToShow = paginatedCountries();
 
   return (
     <div className={style.container}>

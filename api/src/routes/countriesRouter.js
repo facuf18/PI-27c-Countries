@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
       const country = countries.find(c => c.name.toLowerCase() === name.toLowerCase());
       res.json(country ? country : 'No country found');
     } else {
-      res.json(countries.length ? countries : 'No countries found');
+      res.json(countries);
     }
   } catch (err) {
     res.status(404).send({ error: err });

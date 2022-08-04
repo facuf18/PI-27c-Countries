@@ -9,6 +9,7 @@ export default function NavBar() {
       <header className={style.navbar}>
       <div className={style.logo}>
         <img src={Logo} alt='logo' width='70px' />
+        <h3 className={style.title}>Countries PI - Facundo Faccioli</h3>
       </div>
       <nav>
         <ul className={style.list}>

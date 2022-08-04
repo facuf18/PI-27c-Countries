@@ -9,7 +9,17 @@
 }
 
 .logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   padding-left: 20px;
+}
+
+.title {
+  color: black;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-left: 5px;
 }
 
 .list {

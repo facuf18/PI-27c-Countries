@@ -44,7 +44,7 @@ router.get('/', async (req, res) => {
         model: Country
       }
     });
-    res.json(activities); //VER
+    res.json(activities);
   } catch (err) {
     res.status(404).send({ error: err });
   }

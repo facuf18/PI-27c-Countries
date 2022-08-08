@@ -26,6 +26,14 @@ export const useForm = (initialForm, validateForm) => {
     }
   }
 
+  const handleDeleteButton = (country) => {
+    setForm({
+      ...form,
+      countries: form.countries.filter(c => c !== country)
+    });
+  }
+
+
   const handleBlur = (e) => {
     handleChange(e);
     setErrors(validateForm(form));
@@ -46,6 +54,7 @@ export const useForm = (initialForm, validateForm) => {
     errors,
     handleChange,
     handleBlur,
-    handleSubmit
+    handleSubmit,
+    handleDeleteButton
   }
 }

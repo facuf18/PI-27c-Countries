@@ -69,13 +69,25 @@
 }
 
 .countrySpan {
+  display: flex;
+  align-items: baseline;
   color: #272643;
   background-color: #e3f6f5;
   border: #272643;
   border-radius: 5px;
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   margin: 10px;
   margin-top: 0;
+}
+
+.deleteButton {
+  background-color: #272643;
+  border-color: #272643;
+  border-radius: 5px;
+  color: #e3f6f5;
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 .addButton {

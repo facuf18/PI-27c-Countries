@@ -42,7 +42,8 @@ export default function ActivityForm() {
     errors,
     handleChange,
     handleBlur,
-    handleSubmit
+    handleSubmit,
+    handleDeleteButton
   } = useForm(initialForm, validationsForm);
 
   useEffect(() => {
@@ -134,7 +135,17 @@ export default function ActivityForm() {
           <p>Added countries:</p>
           <div className={style.countryContainer}>
             {form.countries && form.countries.map(c => {
-              return <span className={style.countrySpan} key={c}>{c}</span>
+              return (
+              <span className={style.countrySpan} key={c}>
+                <p>{c}</p>
+                <button 
+                  className={style.deleteButton}
+                  onClick={(e) => {
+                  e.preventDefault();
+                  handleDeleteButton(c);
+                  }}>X</button>
+              </span>
+              )
             })}
           </div>
         </div>

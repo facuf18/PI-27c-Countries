@@ -1,6 +1,6 @@
 export const getCountries = () => {
   return async function(dispatch) {
-    return await fetch('http://localhost:3001/countries')
+    return await fetch('https://find-your-country.herokuapp.com/countries')
       .then(res => res.json())
       .then(countries => {
         dispatch({ type: 'COUNTRIES_LOADING' });
@@ -11,7 +11,7 @@ export const getCountries = () => {
 
 export const getCountry = (name) => {
   return async function(dispatch) {
-    return await fetch(`http://localhost:3001/countries?name=${name}`)
+    return await fetch(`https://find-your-country.herokuapp.com/countries?name=${name}`)
       .then(res => res.json())
       .then(country => {
         dispatch({ type: 'GET_COUNTRY', payload: country });
@@ -21,7 +21,7 @@ export const getCountry = (name) => {
 
 export const getCountryDetail = (id) => {
   return async function(dispatch) {
-    return await fetch(`http://localhost:3001/countries/${id}`)
+    return await fetch(`https://find-your-country.herokuapp.com/countries/${id}`)
       .then(res => res.json())
       .then(country => {
         dispatch({ type: 'COUNTRY_LOADING' });
@@ -32,7 +32,7 @@ export const getCountryDetail = (id) => {
 
 export const addActivity = (activity) => {
   return async function(dispatch) {
-    return await fetch('http://localhost:3001/activities', {
+    return await fetch('https://find-your-country.herokuapp.com/activities', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(activity)
@@ -46,7 +46,7 @@ export const addActivity = (activity) => {
 
 export const getActivities = () => {
   return async function(dispatch) {
-    return await fetch('http://localhost:3001/activities')
+    return await fetch('https://find-your-country.herokuapp.com/activities')
       .then(res => res.json())
       .then(activities => {
         dispatch({ type: 'GET_ACTIVITIES', payload: activities });
